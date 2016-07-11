@@ -23,6 +23,32 @@ registerController('USBController', ['$api', '$scope', function($api, $scope) {
     });
 }]);
 
+registerController('ConnectionController', ['$api', '$scope', '$timeout', function($api, $scope, $timeout) {
+    $scope.connected = false;
+
+    $scope.checkConnection = (function() {
+        $api.request({
+            module: 'ModemManager',
+            action: 'checkConnection'
+        }, function(response) {
+            
+        })
+    });
+
+    $scope.setConnection = (function() {
+        $api.request({
+            module: 'ModemManager',
+            action: 'setConnection'
+        }, function(response) {
+
+        })
+    });
+
+    setInterval(function() {
+        $scope.checkConnection();
+    }, 5000);
+}]);
+
 registerController('ModemController', ['$api', '$scope', '$timeout', function($api, $scope, $timeout) {
     $scope.savedConfiguration = false;
     $scope.resetConfigurationSuccess = false;
