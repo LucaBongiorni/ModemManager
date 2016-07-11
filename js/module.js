@@ -59,7 +59,7 @@ registerController('ModemController', ['$api', '$scope', '$timeout', function($a
         $api.request({
             module: 'ModemManager',
             action: 'saveConfiguration',
-            interface: $scope.interfaceName,
+            interface: $scope.interface,
             protocol: $scope.protocol,
             service: $scope.service,
             device: $scope.device,
@@ -91,6 +91,7 @@ registerController('ModemController', ['$api', '$scope', '$timeout', function($a
         }, function(response) {
             if (response.success === true) {
                 $scope.resetConfigurationSuccess = true;
+                $scope.loadConfiguration();
                 $timeout(function(){
                     $scope.resetConfigurationSuccess = false;
                 }, 2000);
