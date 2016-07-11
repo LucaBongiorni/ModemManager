@@ -86,6 +86,8 @@ class ModemManager extends Module
         $keepalive     = $this->uciGet('network.wan2.keepalive');
         $pppdoptions   = $this->uciGet('network.wan2.pppd_options');
 
+        /* Now send a response inside of an array, with keys being 'interface', 'protocol' etc
+           and their values being those we obtained from uciGet(). */
         $this->response = array('success'      => true,
                                 'interface'    => $interface,
                                 'protocol'     => $protocol,
