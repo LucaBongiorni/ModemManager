@@ -18,7 +18,7 @@ registerController('USBController', ['$api', '$scope', function($api, $scope) {
         if (response.success) {
             $scope.availableTTYs = response.availableTTYs;
         } else {
-            $scope.availableTTYs = "No TTYs Found...";
+            $scope.availableTTYs = "No TTYs Found.";
         }
     });
 }]);
