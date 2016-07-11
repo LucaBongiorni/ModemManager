@@ -17,10 +17,30 @@
             </div>
         </div>
     </div>
+    <div class="col-md-5" ng-controller="ConnectionController">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Connection</h3>
+            </div>
+            <div class="panel-body">
+                <span class="label label-success" ng-show="connected">Connected</span>
+                <span class="label label-info" ng-show="connected">T-Mobile</span>
+                
+                <span class="label label-default" ng-show="!connected">Not Connected</span>
+                <button class="btn btn-default pull-right" ng-show="!connected" ng-click="connected = true;">Connect</button>
+                <button class="btn btn-danger pull-right" ng-show="connected" ng-click="connected = false;">Disconnect</button>
+                <div ng-show="connected">
+                    <br>
+                    Placeholder information about the connection.<br/>
+                    Placeholder information about the connection.
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
         <div class="panel panel-default" ng-controller="ModemController">
             <div class="panel-heading">
                 <h3 class="panel-title">Modem Configuration</h3>
@@ -31,7 +51,7 @@
                 <div class="well well-sm alert-danger" ng-show="resetConfigurationError">{{ resetConfigurationError }}</div>
                 <div class="well well-sm alert-success" ng-show="savedConfiguration">Configuration saved.</div>
                 <div class="well well-sm alert-success" ng-show="resetConfigurationSuccess">Configuration reset.</div>
-                
+
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label for="interfaceName" class="col-sm-2 control-label">Interface Name</label>
