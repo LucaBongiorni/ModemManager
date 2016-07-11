@@ -24,6 +24,14 @@ class ModemManager extends Module
                 $this->getTTYs();
                 break;
 
+            case 'checkConnection':
+                $this->checkConnection();
+                break;
+
+            case 'setConnection':
+                $this->setConnection();
+                break;
+
             case 'loadConfiguration':
                 $this->loadConfiguration();
                 break;
@@ -66,6 +74,17 @@ class ModemManager extends Module
             $this->response = array('success' => true,
                                     'availableTTYs' => $TTYs);
         }
+    }
+
+    private function checkConnection()
+    {
+        /* Check the connection of the wan2 interface. */
+
+    }
+
+    private function setConnection()
+    {
+        /* Set the connection of the wan2 interface. */
     }
 
     private function loadConfiguration()
