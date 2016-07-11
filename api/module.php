@@ -71,7 +71,8 @@ class ModemManager extends Module
     private function loadConfiguration()
     {
         /* For easier code reading, assign a variable for each bit of information we require from the system.
-           Read more about UCI at https://wiki.openwrt.org/doc/uci */
+           Read more about UCI at https://wiki.openwrt.org/doc/uci.
+           For more information about the WiFi Pineapple API, visit https://wiki.wifipineapple.com. */
         $interface     = $this->uciGet('network.wan2.ifname');
         $protocol      = $this->uciGet('network.wan2.proto');
         $service       = $this->uciGet('network.wan2.service');
