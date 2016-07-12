@@ -2,25 +2,39 @@ registerController('USBController', ['$api', '$scope', function($api, $scope) {
     $scope.lsusb = "";
     $scope.availableTTYs = "";
 
-    $api.request({
-        module: 'ModemManager',
-        action: 'getUSB'
-    }, function(response) {
-        if (response.lsusb) {
-            $scope.lsusb = response.lsusb;
-        }
+    $scope.getUSB = (function(){
+        $api.request({
+            module: 'ModemManager',
+            action: 'getUSB'
+        }, function(response) {
+            if (response.lsusb) {
+                $scope.lsusb = response.lsusb;
+            }
+        });
     });
 
-    $api.request({
-        module: 'ModemManager',
-        action: 'getTTYs'
-    }, function(response) {
-        if (response.success) {
-            $scope.availableTTYs = response.availableTTYs;
-        } else {
-            $scope.availableTTYs = "No TTYs Found.";
-        }
+    $scope.getTTYs = (function() {
+        $api.request({
+            module: 'ModemManager',
+            action: 'getTTYs'
+        }, function(response) {
+            if (response.success) {
+                $scope.availableTTYs = response.availableTTYs;
+            } else {
+                $scope.availableTTYs = "No TTYs Found.";
+            }
+        });
     });
+
+    $scope.refresh = (function(){
+        $scope.lsusb = "";
+        $scope.availableTTYs = "";
+        $scope.getUSB();
+        $scope.getTTYs();
+    });
+
+    $scope.getUSB();
+    $scope.getTTYs();
 }]);
 
 registerController('ConnectionController', ['$api', '$scope', '$timeout', function($api, $scope, $timeout) {
@@ -31,8 +45,12 @@ registerController('ConnectionController', ['$api', '$scope', '$timeout', functi
             module: 'ModemManager',
             action: 'checkConnection'
         }, function(response) {
-            
-        })
+            if(response.connected === true) {
+                $scope.connected = true;
+            } else {
+                $scope.connected = false;
+            }
+        });
     });
 
     $scope.setConnection = (function() {
@@ -40,8 +58,21 @@ registerController('ConnectionController', ['$api', '$scope', '$timeout', functi
             module: 'ModemManager',
             action: 'setConnection'
         }, function(response) {
+            if(response.success === true) {
+                $scope.connected = true;
+            }
+        });
+    });
 
-        })
+    $scope.unsetConnection = (function() {
+        $api.request({
+            module: 'ModemManager',
+            action: 'unsetConnection'
+        }, function(response) {
+            if(response.success === true) {
+                $scope.connected = false;
+            }
+        });
     });
 
     setInterval(function() {
