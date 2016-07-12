@@ -2,7 +2,11 @@
     <div class="col-md-7" ng-controller="USBController">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">USB & TTY</h3>
+                <h3 class="panel-title">USB & TTY
+                    <span class="pull-right" data-toggle="modal" data-target="#USBInfo">
+                        &#8505;
+                    </span>
+                </h3>
             </div>
             <div class="panel-body">
                 <div class="center-block" ng-hide="lsusb">
@@ -34,8 +38,8 @@
                 <span class="label label-info" ng-show="connected">T-Mobile</span>
 
                 <span class="label label-default" ng-show="!connected">Not Connected</span>
-                <button class="btn btn-default pull-right" ng-show="!connected" ng-click="connected = true;">Connect</button>
-                <button class="btn btn-danger pull-right" ng-show="connected" ng-click="connected = false;">Disconnect</button>
+                <button class="btn btn-default btn-fixed-width pull-right" style="padding: 0px 5px;" ng-show="!connected" ng-click="connected = true;">Connect</button>
+                <button class="btn btn-danger btn-fixed-width pull-right" style="padding: 0px 5px;" ng-show="connected" ng-click="connected = false;">Disconnect</button>
                 <div ng-show="connected">
                     <br>
                     Placeholder information about the connection.<br/>
@@ -50,7 +54,11 @@
     <div class="col-md-7">
         <div class="panel panel-default" ng-controller="ModemController">
             <div class="panel-heading">
-                <h3 class="panel-title">Modem Configuration</h3>
+                <h3 class="panel-title">Modem Configuration
+                    <span class="pull-right" data-toggle="modal" data-target="#ModemInfo">
+                        &#8505;
+                    </span>
+                </h3>
             </div>
             <div class="panel-body">
                 <div class="well well-sm alert-danger" ng-show="loadConfigurationError">{{ loadConfigurationError }}</div>
@@ -140,6 +148,45 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="USBInfo" tabindex="-1" role="dialog" aria-labelledby="USBInfoModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">USB & TTY Information</h4>
+            </div>
+            <div class="modal-body">
+                <h3>USB</h3>
+                <p>The USB information is displayed at the top. It will show the bus, device, <b>VID:PID</b> and its name.
+                   The important information is usually the <b>V</b>endor<b>ID</b> and <b>P</b>roduct<b>ID</b>. This Information
+                   is used to identify the USB device once inserted.</p>
+                <h3>TTYs</h3>
+                <p>Modems will produce one or more TTYs in the form of <b>ttyUSBX</b>, where X is a number from 0. These TTYs are used
+                   to communicate with the modem when dialing.</p>
+                <p>You may not need the information in this section, but it is supplied just incase.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModemInfo" tabindex="-1" role="dialog" aria-labelledby="ModemInfoModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modem Information</h4>
+            </div>
+            <div class="modal-body">
+                <p>This help dialog provides enough information to configure your 3G/4G Modem and initiate a connection. For more information
+                   about 3G/4G devices and the WiFi Pineapple, please visit the <a href="https://wiki.wifipineapple.com/legacy/compatible_modems.md">WiFi Pineapple Wiki</a>
+                   and the <a href="https://wiki.openwrt.org/doc/recipes/3gdongle">OpenWRT article on modems</a>.
+                </p>
             </div>
         </div>
     </div>
