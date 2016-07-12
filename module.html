@@ -117,33 +117,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="peerDNS" class="col-sm-2 control-label">Peer DNS</label>
-                        <div class="col-sm-10">
-                            <input type="textbox" class="form-control" id="peerDNS" placeholder="8.8.8.8" ng-model="peerdns">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="pppRedial" class="col-sm-2 control-label">PPP Redial</label>
-                        <div class="col-sm-10">
-                            <input type="textbox" class="form-control" id="pppRedial" placeholder="" ng-model="pppredial">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="defaultRoute" class="col-sm-2 control-label">Default Route</label>
-                        <div class="col-sm-10">
-                            <input type="textbox" class="form-control" id="defaultRoute" placeholder="" ng-model="defaultroute">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="keepAlive" class="col-sm-2 control-label">Keep Alive</label>
-                        <div class="col-sm-10">
-                            <input type="textbox" class="form-control" id="keepAlive" placeholder="" ng-model="keepalive">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="pppdOptions" class="col-sm-2 control-label">PPPd Options</label>
                         <div class="col-sm-10">
                             <input type="textbox" class="form-control" id="pppdOptions" placeholder="" ng-model="pppdoptions">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Other Options</label>
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline"><input type="checkbox" ng-model="peerdns">Peer DNS</label>
+                            <label class="checkbox-inline"><input type="checkbox" ng-model="pppredial">PPP Redial</label>
+                            <label class="checkbox-inline"><input type="checkbox" ng-model="defaultroute">Default Route</label>
+                            <label class="checkbox-inline"><input type="checkbox" ng-model="keepalive">Keep Alive</label>
                         </div>
                     </div>
                     <div class="form-group">
