@@ -32,6 +32,10 @@ class ModemManager extends Module
                 $this->setConnection();
                 break;
 
+            case 'unsetConnection':
+                $this->unsetConnection();
+                break;
+
             case 'loadConfiguration':
                 $this->loadConfiguration();
                 break;
@@ -85,6 +89,13 @@ class ModemManager extends Module
     private function setConnection()
     {
         /* Set the connection of the wan2 interface. */
+        $this->execBackground('ifup wan2');
+    }
+
+    private function unsetConnection()
+    {
+        /* Unset the connection of the wan2 interface. */
+        $this->execBackground('ifconfig wan2 down');
     }
 
     private function loadConfiguration()
