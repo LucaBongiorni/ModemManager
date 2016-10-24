@@ -4,9 +4,6 @@
 Modem Manager <api/module.php>
 Written by Foxtrot <foxtrotnull@gmail.com>
 Distributed under the MIT Licence <https://opensource.org/licenses/MIT>
-
-This PHP file handles the calls to the system recieved from the AngularJS (js/module.js)
-and will send data to the JS.
 ***/
 
 class ModemManager extends Module
@@ -14,8 +11,6 @@ class ModemManager extends Module
     public function route()
     {
         switch ($this->request->action) {
-            /* If the requested action from the JS is 'getUSB', run the getUSB() function
-               Repeat for each case... */
             case 'getUSB':
                 $this->getUSB();
                 break;
@@ -56,20 +51,14 @@ class ModemManager extends Module
            Then split the output by its newlines. */
         exec('lsusb', $lsusb);
         $lsusb = implode("\n", $lsusb);
-
-        /* Send the response 'lsusb' back to JS with the variable $lsusb as content. */
+        
         $this->response = array('lsusb' => $lsusb);
     }
 
     private function getTTYs()
     {
-        /* Get the listing of /dev/ttyUSB* and store it as %TTYs. */
         exec('ls /dev/ttyUSB*', $TTYs);
 
-        /* If the variable $TTYs is empty, send back a response:
-           'success' as false, and 'availableTTYs' as false.
-
-           Else send 'success' as true, and 'availableTTYs' as the content of $TTYs */
         if (empty($TTYs)) {
             $this->response = array('success' => false,
                                     'availableTTYs' => false);
@@ -155,7 +144,6 @@ class ModemManager extends Module
 
         /* Using the APIs uciSet() function, set the UCI properties to
            what the JS request gave us. */
-
         $this->uciSet('network.wan2',              'interface');
         $this->uciSet('network.wan2.ifname',       $interface);
         $this->uciSet('network.wan2.proto',        $protocol);
