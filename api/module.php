@@ -51,7 +51,7 @@ class ModemManager extends Module
            Then split the output by its newlines. */
         exec('lsusb', $lsusb);
         $lsusb = implode("\n", $lsusb);
-        
+
         $this->response = array('lsusb' => $lsusb);
     }
 
@@ -72,7 +72,7 @@ class ModemManager extends Module
     private function checkConnection()
     {
         /* Check the connection of the wan2 interface. */
-
+        exec('ifconfig wan2', $connectionStatus);
     }
 
     private function setConnection()
