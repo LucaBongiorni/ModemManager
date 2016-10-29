@@ -2,7 +2,7 @@
 
 /***
 Modem Manager <api/module.php>
-Written by Foxtrot <foxtrotnull@gmail.com>
+Written by Foxtrot <foxtrot@realloc.me>
 Distributed under the MIT Licence <https://opensource.org/licenses/MIT>
 ***/
 
