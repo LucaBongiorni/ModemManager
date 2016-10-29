@@ -2,7 +2,7 @@
 This is a module for the WiFi Pineapple intended to manage cellular modems.
 
 ## In Development
-This module does not work yet. Features are missing, and one major problem is that I no longer have access to a 3G/4G modem.
+*This module does not work yet.* Features are missing, and one major problem is that I no longer have access to a 3G/4G modem.
 
 As such, It's hard for me to test if this module even _actually_ works. I think it should atleast dial in, but who knows.
 
