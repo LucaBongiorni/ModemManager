@@ -45,6 +45,24 @@ class ModemManager extends Module
         }
     }
 
+    private function checkDepends()
+    {
+        /* Check dependencies */
+        
+    }
+
+    private function installDepends()
+    {
+        /* Install dependencies */
+
+    }
+
+    private function removeDepends()
+    {
+        /* Remove dependencies */
+
+    }
+
     private function getUSB()
     {
         /* Execute 'lsusb' and capture its output in the $lsusb variable.
@@ -72,6 +90,11 @@ class ModemManager extends Module
     private function checkConnection()
     {
         /* Check the connection of the wan2 interface. */
+        if(file_exists('/sys/class/net/3g-wan2/carrier')) {
+            $this->response = array('status' => 'connected');
+        } else {
+            $this->response = array('status' => 'disconnected');
+        }
 
     }
 
@@ -79,14 +102,14 @@ class ModemManager extends Module
     {
         /* Set the connection of the wan2 interface. */
         $this->execBackground('ifup wan2');
-        $this->response = array('status' => true);
+        $this->response = array('status' => 'connecting');
     }
 
     private function unsetConnection()
     {
         /* Unset the connection of the wan2 interface. */
         $this->execBackground('ifdown wan2');
-        $this->response = array('status' => false);
+        $this->response = array('status' => 'disconnected');
     }
 
     private function loadConfiguration()

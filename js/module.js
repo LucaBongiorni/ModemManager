@@ -38,17 +38,19 @@ registerController('USBController', ['$api', '$scope', function($api, $scope) {
 }]);
 
 registerController('ConnectionController', ['$api', '$scope', '$timeout', function($api, $scope, $timeout) {
-    $scope.connected = false;
+    $scope.connected    = false;
+    $scope.connecting   = false;
+    $scope.disconnected = false;
 
     $scope.checkConnection = (function() {
         $api.request({
             module: 'ModemManager',
             action: 'checkConnection'
         }, function(response) {
-            if(response.connected === true) {
-                $scope.connected = true;
-            } else {
-                $scope.connected = false;
+            if (response.status == 'connected') {
+                $scope.connected    = true;
+                $scope.connecting   = false;
+                $scope.disconnected = false;
             }
         });
     });
@@ -58,9 +60,11 @@ registerController('ConnectionController', ['$api', '$scope', '$timeout', functi
             module: 'ModemManager',
             action: 'setConnection'
         }, function(response) {
-            if(response.status === true) {
-                $scope.connected = true;
-            }
+            if(response.status == 'connecting') {
+                $scope.connected    = false;
+                $scope.connecting   = true;
+                $scope.disconnected = false;
+            };
         });
     });
 
@@ -69,15 +73,19 @@ registerController('ConnectionController', ['$api', '$scope', '$timeout', functi
             module: 'ModemManager',
             action: 'unsetConnection'
         }, function(response) {
-            if(response.status === false) {
-                $scope.connected = false;
-            }
+            if(response.status == 'disconnected') {
+                $scope.connecting   = false;
+                $scope.connected    = false;
+                $scope.disconnected = true;
+            };
         });
     });
 
-    // setInterval(function() {
-    //     $scope.checkConnection();
-    // }, 5000);
+    $scope.checkConnection();
+
+    setInterval(function() {
+       $scope.checkConnection();
+   }, 10000);
 }]);
 
 registerController('ModemController', ['$api', '$scope', '$timeout', function($api, $scope, $timeout) {
