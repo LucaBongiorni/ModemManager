@@ -150,37 +150,28 @@ class ModemManager extends Module
         $this->uciSet('network.wan2.service',      $service);
         $this->uciSet('network.wan2.device',       $device);
         $this->uciSet('network.wan2.apn',          $apn);
-        $this->uciSet('network.wan2.username',     $username);
-        $this->uciSet('network.wan2.password',     $password);
-        $this->uciSet('network.wan2.dns',          $dns);
         $this->uciSet('network.wan2.peerdns',      $peerdns);
         $this->uciSet('network.wan2.ppp_redial',   $pppredial);
         $this->uciSet('network.wan2.defaultroute', $defaultroute);
         $this->uciSet('network.wan2.keepalive',    $keepalive);
         $this->uciSet('network.wan2.pppd_options', $pppdoptions);
+        if(!empty($username)) {
+            $this->uciSet('network.wan2.username', $username);
+        }
+        if (!empty($password)) {
+            $this->uciSet('network.wan2.password', $password);
+        }
+        if(!empty($dns)) {
+            $this->uciSet('network.wan2.dns', $dns);
+        }
 
         $this->response = array('success' => true);
     }
 
     private function resetConfiguration()
     {
-        /* Delete the network.wan2 section,
-           Set a new network.wan2 section and set all the required fields empty. */
+        /* Delete the network.wan2 section */
         exec('uci del network.wan2');
-        $this->uciSet('network.wan2',              'interface');
-        $this->uciSet('network.wan2.ifname',       '');
-        $this->uciSet('network.wan2.proto',        '');
-        $this->uciSet('network.wan2.service',      '');
-        $this->uciSet('network.wan2.device',       '');
-        $this->uciSet('network.wan2.apn',          '');
-        $this->uciSet('network.wan2.username',     '');
-        $this->uciSet('network.wan2.password',     '');
-        $this->uciSet('network.wan2.dns',          '');
-        $this->uciSet('network.wan2.peerdns',      '');
-        $this->uciSet('network.wan2.ppp_redial',   '');
-        $this->uciSet('network.wan2.defaultroute', '');
-        $this->uciSet('network.wan2.keepalive',    '');
-        $this->uciSet('network.wan2.pppd_options', '');
 
         $this->response = array('success' => true);
     }
