@@ -81,11 +81,11 @@ registerController('ConnectionController', ['$api', '$scope', '$timeout', functi
 }]);
 
 registerController('ModemController', ['$api', '$scope', '$timeout', function($api, $scope, $timeout) {
-    $scope.savedConfiguration = false;
+    $scope.savedConfiguration        = false;
     $scope.resetConfigurationSuccess = false;
-    $scope.saveConfigurationError = "";
-    $scope.loadConfigurationError = "";
-    $scope.resetConfigurationError = "";
+    $scope.saveConfigurationError    = "";
+    $scope.loadConfigurationError    = "";
+    $scope.resetConfigurationError   = "";
 
     $scope.loadConfiguration = (function() {
         $api.request({
@@ -93,19 +93,20 @@ registerController('ModemController', ['$api', '$scope', '$timeout', function($a
             action: 'loadConfiguration'
         }, function(response) {
             if (response.success === true) {
-                $scope.interface = response.interface;
-                $scope.protocol = response.protocol;
-                $scope.service = response.service;
-                $scope.device = response.device;
-                $scope.apn = response.apn;
-                $scope.username = response.username;
-                $scope.password = response.password;
-                $scope.dns = response.dns;
-                $scope.peerdns = response.peerdns;
-                $scope.pppredial = response.pppredial;
+                $scope.interface    = response.interface;
+                $scope.vendorid     = response.vendorid;
+                $scope.protocol     = response.protocol;
+                $scope.service      = response.service;
+                $scope.device       = response.device;
+                $scope.apn          = response.apn;
+                $scope.username     = response.username;
+                $scope.password     = response.password;
+                $scope.dns          = response.dns;
+                $scope.peerdns      = response.peerdns;
+                $scope.pppredial    = response.pppredial;
                 $scope.defaultroute = response.defaultroute;
-                $scope.keepalive = response.keepalive;
-                $scope.pppdoptions = response.pppdoptions;
+                $scope.keepalive    = response.keepalive;
+                $scope.pppdoptions  = response.pppdoptions;
             } else {
                 $scope.loadConfigurationError = "Failed to load configuration.";
             }
@@ -114,21 +115,22 @@ registerController('ModemController', ['$api', '$scope', '$timeout', function($a
 
     $scope.saveConfiguration = (function() {
         $api.request({
-            module: 'ModemManager',
-            action: 'saveConfiguration',
-            interface: $scope.interface,
-            protocol: $scope.protocol,
-            service: $scope.service,
-            device: $scope.device,
-            apn: $scope.apn,
-            username: $scope.username,
-            password: $scope.password,
-            dns: $scope.dns,
-            peerdns: $scope.peerdns,
-            pppredial: $scope.pppredial,
+            module:       'ModemManager',
+            action:       'saveConfiguration',
+            interface:    $scope.interface,
+            vendorid:     $scope.vendorid,
+            protocol:     $scope.protocol,
+            service:      $scope.service,
+            device:       $scope.device,
+            apn:          $scope.apn,
+            username:     $scope.username,
+            password:     $scope.password,
+            dns:          $scope.dns,
+            peerdns:      $scope.peerdns,
+            pppredial:    $scope.pppredial,
             defaultroute: $scope.defaultroute,
-            keepalive: $scope.keepalive,
-            pppdoptions: $scope.pppdoptions
+            keepalive:    $scope.keepalive,
+            pppdoptions:  $scope.pppdoptions
         }, function(response) {
             if (response.success === true) {
                 $scope.savedConfiguration = true;

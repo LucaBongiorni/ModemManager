@@ -93,6 +93,7 @@ class ModemManager extends Module
            Read more about UCI at https://wiki.openwrt.org/doc/uci.
            For more information about the WiFi Pineapple API, visit https://wiki.wifipineapple.com. */
         $interface     = $this->uciGet('network.wan2.ifname');
+        $vendorid      = $this->uciGet('network.wan2.currentVID');
         $protocol      = $this->uciGet('network.wan2.proto');
         $service       = $this->uciGet('network.wan2.service');
         $device        = $this->uciGet('network.wan2.device');
@@ -110,6 +111,7 @@ class ModemManager extends Module
            and their values being those we obtained from uciGet(). */
         $this->response = array('success'      => true,
                                 'interface'    => $interface,
+                                'vendorid'     => $vendorid,
                                 'protocol'     => $protocol,
                                 'service'      => $service,
                                 'device'       => $device,
@@ -129,6 +131,7 @@ class ModemManager extends Module
         /* In the same way as loadConfiguration(), get the desired information and assign it to a variable.
            However this time get the that was sent with the request from the JS. */
         $interface     = $this->request->interface;
+        $vendorid      = $this->request->vendorid;
         $protocol      = $this->request->protocol;
         $service       = $this->request->service;
         $device        = $this->request->device;
@@ -146,6 +149,7 @@ class ModemManager extends Module
            what the JS request gave us. */
         $this->uciSet('network.wan2',              'interface');
         $this->uciSet('network.wan2.ifname',       $interface);
+        $this->uciSet('network.wan2.currentVID',   $vendorid);
         $this->uciSet('network.wan2.proto',        $protocol);
         $this->uciSet('network.wan2.service',      $service);
         $this->uciSet('network.wan2.device',       $device);
@@ -155,6 +159,7 @@ class ModemManager extends Module
         $this->uciSet('network.wan2.defaultroute', $defaultroute);
         $this->uciSet('network.wan2.keepalive',    $keepalive);
         $this->uciSet('network.wan2.pppd_options', $pppdoptions);
+
         if(!empty($username)) {
             $this->uciSet('network.wan2.username', $username);
         }
