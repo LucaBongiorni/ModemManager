@@ -174,7 +174,8 @@ class ModemManager extends Module
             $this->uciSet('network.wan2.dns', $dns);
         }
 
-        //file_put_contents("usbserial vendor=0x12d1 product=0x$ maxSize=4096", data)
+        unlink("/etc/modules.d/60-usb-serial");
+        exec("echo 'usbserial vendor=0x$vendorid product=0x$productid maxSize=4096' > /etc/modules.d/60-usb-serial");
 
         $this->response = array('success' => true);
     }
