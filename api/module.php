@@ -84,7 +84,7 @@ class ModemManager extends Module
     private function unsetConnection()
     {
         /* Unset the connection of the wan2 interface. */
-        $this->execBackground('ifconfig wan2 down');
+        $this->execBackground('ifdown wan2');
     }
 
     private function loadConfiguration()
