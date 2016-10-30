@@ -13,11 +13,11 @@ After saving the configuration, you currently will need to reboot the pineapple 
 - Some info about the connection
 
 ## Installation
-~~As the module isn't yet available, you need to install it manually. To do so:
+~~As the module isn't yet available, you need to install it manually. To do so:~~
 
-1. Download the "master" branch of this module.
-2. Create the folder `/pineapple/modules/ModemManager/` on the WiFi Pineapple.
-3. Extract the downloaded `master.zip` into the `/pineapple/modules/ModemManager/` directory.
-4. Refresh the WiFi Pineapple UI to find the module.~~
+~~1. Download the "master" branch of this module.~~
+~~2. Create the folder `/pineapple/modules/ModemManager/` on the WiFi Pineapple.~~
+~~3. Extract the downloaded `master.zip` into the `/pineapple/modules/ModemManager/` directory.~~
+~~4. Refresh the WiFi Pineapple UI to find the module.~~
 
 The module is now out on the manager.
