@@ -70,12 +70,7 @@ class ModemManager extends Module
     private function installDepends()
     {
         /* Install dependencies */
-        if ($this->getDevice() == 'tetra') {
-            $this->execBackground('opkg update && opkg install comgt wwan uqmi');    
-        } else {
-            $this->execBackground('opkg update && opkg install comgt wwan uqmi --dest sd');
-        }
-
+        $this->execBackground('opkg update && opkg install comgt wwan uqmi');    
         $this->response = array("installing" => true);
 
     }
