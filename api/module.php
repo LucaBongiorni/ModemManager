@@ -186,6 +186,7 @@ class ModemManager extends Module
     {
         /* Delete the network.wan2 section */
         exec('uci del network.wan2');
+        exec('uci commit');
         unlink('/etc/modules.d/60-usb-serial');
 
         $this->response = array('success' => true);
