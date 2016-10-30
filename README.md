@@ -15,8 +15,6 @@ After saving the configuration, you currently will need to reboot the pineapple 
 ## To do
 - Add CDC support
 - Some info about the connection
-- Better connection status (Remember status, show connecting)
-- Eliminate rebooting
 
 ## Installation
 As the module isn't yet available, you need to install it manually. To do so:
