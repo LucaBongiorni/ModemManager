@@ -11,6 +11,18 @@ class ModemManager extends Module
     public function route()
     {
         switch ($this->request->action) {
+            case 'checkDepends':
+                $this->checkDepends();
+                break;
+
+            case 'installDepends':
+                $this->installDepends();
+                break;
+
+            case 'removeDepends':
+                $this->removeDepends();
+                break;
+
             case 'getUSB':
                 $this->getUSB();
                 break;
@@ -48,19 +60,31 @@ class ModemManager extends Module
     private function checkDepends()
     {
         /* Check dependencies */
-        
+        if(empty($this->checkDependency('comgt'))) {
+            $this->response = array('installed' => false);
+        } else {
+            $this->response = array('installed' => true);
+        }
     }
 
     private function installDepends()
     {
         /* Install dependencies */
+        if ($this->getDevice() == 'tetra') {
+            $this->execBackground('opkg update && opkg install comgt wwan uqmi');    
+        } else {
+            $this->execBackground('opkg update && opkg install comgt wwan uqmi --dest sd');
+        }
+
+        $this->response = array("installing" => true);
 
     }
 
     private function removeDepends()
     {
         /* Remove dependencies */
-
+        $this->execBackground('opkg remove comgt wwan uqmi');
+        $this->response = array('success' => true);
     }
 
     private function getUSB()

@@ -1,6 +1,60 @@
-registerController('USBController', ['$api', '$scope', function($api, $scope) {
-    $scope.lsusb = "";
+registerController('USBController', ['$api', '$scope', '$interval', function($api, $scope, $interval) {
+    $scope.lsusb         = "";
     $scope.availableTTYs = "";
+    $scope.installed     = false;
+    $scope.installling   = false;
+
+
+    $scope.checkDepends = (function() {
+        $api.request({
+            module: 'ModemManager',
+            action: 'checkDepends'
+        }, function(response) {
+            console.log(response);
+            if(response.installed === true) {
+                $scope.installed = true;
+                $scope.installing = false;
+                $interval.cancel($scope.install_interval);
+            } else {
+                $scope.installed = false;
+            }
+        });
+    });
+
+    $scope.installDepends = (function() {
+        $api.request({
+            module: 'ModemManager',
+            action: 'installDepends'
+        }, function(response) {
+            console.log('INSTALL');
+            console.log(response);
+            if(response.installing === true) {
+                $scope.installing = true;
+                $scope.install_interval = $interval(function(){
+                    $scope.checkDepends();
+                }, 1000);
+            }
+        });
+    });
+
+    $scope.removeDepends = (function() {
+        $api.request({
+            module: 'ModemManager',
+            action: 'removeDepends'
+        }, function(response) {
+            console.log('UNINSTALL');
+            console.log(response);
+            if(response.success === true) {
+                $scope.checkDepends();
+            }
+        });
+    });
+
+    $scope.checkDepends();
+
+    $scope.$on('$destroy', function() {
+        $interval.cancel($scope.install_interval);
+    });
 
     $scope.getUSB = (function(){
         $api.request({

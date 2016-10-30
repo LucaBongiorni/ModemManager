@@ -23,6 +23,12 @@
                         <button type="button" class="btn btn-default" style="padding: 0px 5px;" ng-click="refresh();">
                             Refresh
                         </button>
+                        <img src="/img/throbber.gif" ng-show="installing">
+                        <button type="button" class="btn btn-default" style="padding: 0px 5px;" ng-click="installDepends();" ng-hide="installed">
+                            Install
+                        </button>
+                        <button type="button" class="btn btn-default" style="padding: 0px 5px;" ng-click="removeDepends();" ng-show="installed">Remove
+                        </button>
                     </span>
                 </div>
             </div>
