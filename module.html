@@ -74,12 +74,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="vendorid" class="col-sm-2 control-label">VID:PID</label>
-                        <div class="col-sm-10">
-                            <input type="textbox" class="form-control" id="vendorid" placeholder="0000:FFFF" ng-model="vendorid">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="protocol" class="col-sm-2 control-label">Protocol</label>
                         <div class="col-sm-10">
                             <select class="form-control" ng-model="protocol">
@@ -96,6 +90,12 @@
                                 <option value="umts">UMTS</option>
                                 <option value="gprs">GPRS</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vendorid" class="col-sm-2 control-label">VID:PID</label>
+                        <div class="col-sm-10">
+                            <input type="textbox" class="form-control" id="vendorid" placeholder="0000:FFFF" ng-model="vendorid">
                         </div>
                     </div>
                     <div class="form-group">
@@ -146,8 +146,8 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <span class="pull-right">
-                                <button class="btn btn-default" ng-click="saveConfiguration();">Save</button>
                                 <button class="btn btn-danger" ng-click="resetConfiguration();">Reset</button>
+                                <button class="btn btn-default" ng-click="saveConfiguration();">Save</button>
                             </span>
                         </div>
                     </div>

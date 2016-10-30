@@ -93,9 +93,9 @@ class ModemManager extends Module
            Read more about UCI at https://wiki.openwrt.org/doc/uci.
            For more information about the WiFi Pineapple API, visit https://wiki.wifipineapple.com. */
         $interface     = $this->uciGet('network.wan2.ifname');
-        $vendorid      = $this->uciGet('network.wan2.currentVID');
         $protocol      = $this->uciGet('network.wan2.proto');
         $service       = $this->uciGet('network.wan2.service');
+        $vendorid      = $this->uciGet('network.wan2.currentVID');
         $device        = $this->uciGet('network.wan2.device');
         $apn           = $this->uciGet('network.wan2.apn');
         $username      = $this->uciGet('network.wan2.username');
@@ -111,9 +111,9 @@ class ModemManager extends Module
            and their values being those we obtained from uciGet(). */
         $this->response = array('success'      => true,
                                 'interface'    => $interface,
-                                'vendorid'     => $vendorid,
                                 'protocol'     => $protocol,
                                 'service'      => $service,
+                                'vendorid'     => $vendorid,
                                 'device'       => $device,
                                 'apn'          => $apn,
                                 'username'     => $username,
@@ -131,9 +131,9 @@ class ModemManager extends Module
         /* In the same way as loadConfiguration(), get the desired information and assign it to a variable.
            However this time get the data that was sent with the request from the JS. */
         $interface     = $this->request->interface;
-        $vendorid      = $this->request->vendorid;
         $protocol      = $this->request->protocol;
         $service       = $this->request->service;
+        $vendorid      = $this->request->vendorid;
         $device        = $this->request->device;
         $apn           = $this->request->apn;
         $username      = $this->request->username;
@@ -149,9 +149,9 @@ class ModemManager extends Module
            what the JS request gave us. */
         $this->uciSet('network.wan2',              'interface');
         $this->uciSet('network.wan2.ifname',       $interface);
-        $this->uciSet('network.wan2.currentVID',   $vendorid);
         $this->uciSet('network.wan2.proto',        $protocol);
         $this->uciSet('network.wan2.service',      $service);
+        $this->uciSet('network.wan2.currentVID',   $vendorid);
         $this->uciSet('network.wan2.device',       $device);
         $this->uciSet('network.wan2.apn',          $apn);
         $this->uciSet('network.wan2.peerdns',      $peerdns);

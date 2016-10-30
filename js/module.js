@@ -94,9 +94,9 @@ registerController('ModemController', ['$api', '$scope', '$timeout', function($a
         }, function(response) {
             if (response.success === true) {
                 $scope.interface    = response.interface;
-                $scope.vendorid     = response.vendorid;
                 $scope.protocol     = response.protocol;
                 $scope.service      = response.service;
+                $scope.vendorid     = response.vendorid;
                 $scope.device       = response.device;
                 $scope.apn          = response.apn;
                 $scope.username     = response.username;
@@ -118,9 +118,9 @@ registerController('ModemController', ['$api', '$scope', '$timeout', function($a
             module:       'ModemManager',
             action:       'saveConfiguration',
             interface:    $scope.interface,
-            vendorid:     $scope.vendorid,
             protocol:     $scope.protocol,
             service:      $scope.service,
+            vendorid:     $scope.vendorid,
             device:       $scope.device,
             apn:          $scope.apn,
             username:     $scope.username,
