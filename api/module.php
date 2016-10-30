@@ -78,13 +78,13 @@ class ModemManager extends Module
     private function setConnection()
     {
         /* Set the connection of the wan2 interface. */
-        $this->execBackground('ifup wan2');
+        $this->execBackground('ifup 3g-wan2');
     }
 
     private function unsetConnection()
     {
         /* Unset the connection of the wan2 interface. */
-        $this->execBackground('ifdown wan2');
+        $this->execBackground('ifdown 3g-wan2');
     }
 
     private function loadConfiguration()
