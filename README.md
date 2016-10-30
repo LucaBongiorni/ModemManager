@@ -15,7 +15,7 @@ After saving the configuration, you currently will need to reboot the pineapple 
 ## To do
 - Add CDC support
 - Some info about the connection
-- Fix the connect button
+- Better connection status (Remember status, show connecting)
 - Eliminate rebooting
 
 ## Installation
