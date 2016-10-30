@@ -97,6 +97,7 @@ registerController('ModemController', ['$api', '$scope', '$timeout', function($a
                 $scope.protocol     = response.protocol;
                 $scope.service      = response.service;
                 $scope.vendorid     = response.vendorid;
+                $scope.productid    = response.productid;
                 $scope.device       = response.device;
                 $scope.apn          = response.apn;
                 $scope.username     = response.username;
@@ -121,6 +122,7 @@ registerController('ModemController', ['$api', '$scope', '$timeout', function($a
             protocol:     $scope.protocol,
             service:      $scope.service,
             vendorid:     $scope.vendorid,
+            productid:    $scope.productid,
             device:       $scope.device,
             apn:          $scope.apn,
             username:     $scope.username,

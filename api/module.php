@@ -72,7 +72,7 @@ class ModemManager extends Module
     private function checkConnection()
     {
         /* Check the connection of the wan2 interface. */
-        exec('ifconfig wan2', $connectionStatus);
+        
     }
 
     private function setConnection()
@@ -96,6 +96,7 @@ class ModemManager extends Module
         $protocol      = $this->uciGet('network.wan2.proto');
         $service       = $this->uciGet('network.wan2.service');
         $vendorid      = $this->uciGet('network.wan2.currentVID');
+        $productid     = $this->uciGet('network.wan2.currentPID');
         $device        = $this->uciGet('network.wan2.device');
         $apn           = $this->uciGet('network.wan2.apn');
         $username      = $this->uciGet('network.wan2.username');
@@ -114,6 +115,7 @@ class ModemManager extends Module
                                 'protocol'     => $protocol,
                                 'service'      => $service,
                                 'vendorid'     => $vendorid,
+                                'productid'    => $productid,
                                 'device'       => $device,
                                 'apn'          => $apn,
                                 'username'     => $username,
@@ -134,6 +136,7 @@ class ModemManager extends Module
         $protocol      = $this->request->protocol;
         $service       = $this->request->service;
         $vendorid      = $this->request->vendorid;
+        $productid     = $this->request->productid;
         $device        = $this->request->device;
         $apn           = $this->request->apn;
         $username      = $this->request->username;
@@ -152,6 +155,7 @@ class ModemManager extends Module
         $this->uciSet('network.wan2.proto',        $protocol);
         $this->uciSet('network.wan2.service',      $service);
         $this->uciSet('network.wan2.currentVID',   $vendorid);
+        $this->uciSet('network.wan2.currentPID',   $productid);
         $this->uciSet('network.wan2.device',       $device);
         $this->uciSet('network.wan2.apn',          $apn);
         $this->uciSet('network.wan2.peerdns',      $peerdns);
@@ -169,6 +173,8 @@ class ModemManager extends Module
         if(!empty($dns)) {
             $this->uciSet('network.wan2.dns', $dns);
         }
+
+        //file_put_contents("usbserial vendor=0x12d1 product=0x$ maxSize=4096", data)
 
         $this->response = array('success' => true);
     }
