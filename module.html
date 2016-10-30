@@ -36,8 +36,8 @@
             <div class="panel-body">
                 <span class="label label-success" ng-show="connected">Connected</span>
                 <span class="label label-default" ng-show="!connected">Not Connected</span>
-                <button class="btn btn-default btn-fixed-width pull-right" style="padding: 0px 5px;" ng-show="!connected" ng-click="connected = true;">Connect</button>
-                <button class="btn btn-danger btn-fixed-width pull-right" style="padding: 0px 5px;" ng-show="connected" ng-click="connected = false;">Disconnect</button>
+                <button class="btn btn-default btn-fixed-width pull-right" style="padding: 0px 5px;" ng-show="!connected" ng-click="setConnection();">Connect</button>
+                <button class="btn btn-danger btn-fixed-width pull-right" style="padding: 0px 5px;" ng-show="connected" ng-click="unsetConnection();">Disconnect</button>
                 <div ng-show="connected">
 
                 </div>

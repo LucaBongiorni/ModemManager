@@ -58,7 +58,7 @@ registerController('ConnectionController', ['$api', '$scope', '$timeout', functi
             module: 'ModemManager',
             action: 'setConnection'
         }, function(response) {
-            if(response.success === true) {
+            if(response.status === true) {
                 $scope.connected = true;
             }
         });
@@ -69,15 +69,15 @@ registerController('ConnectionController', ['$api', '$scope', '$timeout', functi
             module: 'ModemManager',
             action: 'unsetConnection'
         }, function(response) {
-            if(response.success === true) {
+            if(response.status === false) {
                 $scope.connected = false;
             }
         });
     });
 
-    setInterval(function() {
-        $scope.checkConnection();
-    }, 5000);
+    // setInterval(function() {
+    //     $scope.checkConnection();
+    // }, 5000);
 }]);
 
 registerController('ModemController', ['$api', '$scope', '$timeout', function($api, $scope, $timeout) {
