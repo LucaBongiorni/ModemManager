@@ -40,7 +40,7 @@ registerController('USBController', ['$api', '$scope', function($api, $scope) {
 registerController('ConnectionController', ['$api', '$scope', '$timeout', function($api, $scope, $timeout) {
     $scope.connected    = false;
     $scope.connecting   = false;
-    $scope.disconnected = false;
+    $scope.disconnected = true;
 
     $scope.checkConnection = (function() {
         $api.request({
