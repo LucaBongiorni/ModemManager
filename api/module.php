@@ -57,7 +57,7 @@ class ModemManager extends Module
 
     private function getTTYs()
     {
-        exec('ls /dev/ttyUSB*', $TTYs);
+        exec('ls /dev/ttyUSB* && ls /dev/cdc-wdm*', $TTYs);
 
         if (empty($TTYs)) {
             $this->response = array('success' => false,
