@@ -72,7 +72,7 @@ class ModemManager extends Module
     private function checkConnection()
     {
         /* Check the connection of the wan2 interface. */
-        
+
     }
 
     private function setConnection()
@@ -186,6 +186,7 @@ class ModemManager extends Module
     {
         /* Delete the network.wan2 section */
         exec('uci del network.wan2');
+        unlink('/etc/modules.d/60-usb-serial');
 
         $this->response = array('success' => true);
     }
