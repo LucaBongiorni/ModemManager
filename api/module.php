@@ -129,7 +129,7 @@ class ModemManager extends Module
     private function saveConfiguration()
     {
         /* In the same way as loadConfiguration(), get the desired information and assign it to a variable.
-           However this time get the that was sent with the request from the JS. */
+           However this time get the data that was sent with the request from the JS. */
         $interface     = $this->request->interface;
         $vendorid      = $this->request->vendorid;
         $protocol      = $this->request->protocol;
