@@ -20,15 +20,15 @@
                 <pre class="scrollable-pre" ng-show="availableTTYs">{{ availableTTYs }}</pre>
                 <div>
                     <span class="pull-right">
+                        <button type="button" class="btn btn-default" style="padding: 0px 5px;" ng-click="installDepends();" ng-hide="installed">
+                            Install Depenedencies
+                        </button>
+                        <button type="button" class="btn btn-default" style="padding: 0px 5px;" ng-click="removeDepends();" ng-show="installed">Remove Dependencies
+                        </button>
                         <button type="button" class="btn btn-default" style="padding: 0px 5px;" ng-click="refresh();">
                             Refresh
                         </button>
                         <img src="/img/throbber.gif" ng-show="installing">
-                        <button type="button" class="btn btn-default" style="padding: 0px 5px;" ng-click="installDepends();" ng-hide="installed">
-                            Install
-                        </button>
-                        <button type="button" class="btn btn-default" style="padding: 0px 5px;" ng-click="removeDepends();" ng-show="installed">Remove
-                        </button>
                     </span>
                 </div>
             </div>
