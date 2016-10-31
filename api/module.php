@@ -111,6 +111,9 @@ class ModemManager extends Module
         /* Check the connection of the wan2 interface. */
         if(file_exists('/sys/class/net/3g-wan2/carrier')) {
             $this->response = array('status' => 'connected');
+            exec('iptables -t nat -A POSTROUTING -s 172.16.42.0/24 -o 3g-wan2 -j MASQUERADE');
+            exec('iptables -A FORWARD -s 172.16.42.0/24 -o 3g-wan2 -j ACCEPT');
+            exec('iptables -A FORWARD -d 172.16.42.0/24 -m state --state ESTABLISHED,RELATED -i 3g-wan2 -j ACCEPT');
         } else {
             $this->response = array('status' => 'disconnected');
         }
